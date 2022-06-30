@@ -40,7 +40,7 @@ public class Utils {
 					} 
 					else {
 						//SimpleDateFormat sdf = new SimpleDateFormat(format);
-						//setText(sdf.format(item));
+						//this.setText(sdf.format(item));
 					}
 				}
 			};
