@@ -1,6 +1,7 @@
 package gui;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -35,16 +36,25 @@ public class SellerListController implements Initializable, DataChangeListener{
 	private TableView<Seller> tableViewSeller;
 	
 	@FXML
-	private TableColumn<Seller, Integer> tableColunmId;
+	private TableColumn<Seller, Integer> tableColumnId;
 	
 	@FXML
-	private TableColumn<Seller, String> tableColunmName;
+	private TableColumn<Seller, String> tableColumnName;
 	
 	@FXML
-	private TableColumn<Seller, Seller> tableColunmEDIT;
+	private TableColumn<Seller, String> tableColumnEmail;
+
+	@FXML
+	private TableColumn<Seller, Date> tableColumnBirthDate;
 	
 	@FXML
-	private TableColumn<Seller, Seller> tableColunmREMOVE;
+	private TableColumn<Seller, Double> tableColumnBaseSalary;	
+	
+	@FXML
+	private TableColumn<Seller, Seller> tableColumnEDIT;
+	
+	@FXML
+	private TableColumn<Seller, Seller> tableColumnREMOVE;
 	
 	@FXML
 	private Button btNew;
@@ -68,8 +78,13 @@ public class SellerListController implements Initializable, DataChangeListener{
 	}
 
 	private void initializeNodes() {
-		tableColunmId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tableColunmName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+		Utils.formatTableColumnDate(tableColumnBirthDate, "yyyy-MM-dd");
+		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
+		Utils.formatTableColumnDouble(tableColumnBaseSalary, 2);
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewSeller.prefHeightProperty().bind(stage.heightProperty());
@@ -118,8 +133,8 @@ public class SellerListController implements Initializable, DataChangeListener{
 	}
 	
 	private void initEditButtons() {
-		tableColunmEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColunmEDIT.setCellFactory(param -> new TableCell<Seller, Seller>(){
+		tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnEDIT.setCellFactory(param -> new TableCell<Seller, Seller>(){
 			private final Button button = new Button("edit");
 			
 			@Override
@@ -140,8 +155,8 @@ public class SellerListController implements Initializable, DataChangeListener{
 	}
 	
 	private void initRemoveButtons() {
-		tableColunmREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColunmREMOVE.setCellFactory(param -> new TableCell<Seller, Seller>(){
+		tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnREMOVE.setCellFactory(param -> new TableCell<Seller, Seller>(){
 			private final Button button = new Button("remove");
 			
 			@Override

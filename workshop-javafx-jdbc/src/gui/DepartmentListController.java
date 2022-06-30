@@ -40,16 +40,16 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	private TableView<Department> tableViewDepartment;
 	
 	@FXML
-	private TableColumn<Department, Integer> tableColunmId;
+	private TableColumn<Department, Integer> tableColumnId;
 	
 	@FXML
-	private TableColumn<Department, String> tableColunmName;
+	private TableColumn<Department, String> tableColumnName;
 	
 	@FXML
-	private TableColumn<Department, Department> tableColunmEDIT;
+	private TableColumn<Department, Department> tableColumnEDIT;
 	
 	@FXML
-	private TableColumn<Department, Department> tableColunmREMOVE;
+	private TableColumn<Department, Department> tableColumnREMOVE;
 	
 	@FXML
 	private Button btNew;
@@ -73,8 +73,8 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	}
 
 	private void initializeNodes() {
-		tableColunmId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tableColunmName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
@@ -121,8 +121,8 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	}
 	
 	private void initEditButtons() {
-		tableColunmEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColunmEDIT.setCellFactory(param -> new TableCell<Department, Department>(){
+		tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnEDIT.setCellFactory(param -> new TableCell<Department, Department>(){
 			private final Button button = new Button("edit");
 			
 			@Override
@@ -143,8 +143,8 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	}
 	
 	private void initRemoveButtons() {
-		tableColunmREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColunmREMOVE.setCellFactory(param -> new TableCell<Department, Department>(){
+		tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnREMOVE.setCellFactory(param -> new TableCell<Department, Department>(){
 			private final Button button = new Button("remove");
 			
 			@Override
